@@ -34,12 +34,12 @@ class ProcessController extends AbstractController
 
         $name = $body["name"];
         $description = $body["description"];
-        $tests = $body["tests"];
+        $steps = $body["steps"];
 
         $process = new Process();
         $process->setName($name);
         $process->setDescription($description);
-        $process->setTests($tests);
+        $process->setSteps($steps);
 
         $errors = $validator->validate($process);
         if (count($errors) > 0) {
@@ -71,7 +71,7 @@ class ProcessController extends AbstractController
 
         $name = $body["name"];
         $description = $body["description"];
-        $tests = $body["tests"];
+        $steps = $body["steps"];
 
         if ($name) {
             $process->setName($name);
@@ -81,8 +81,8 @@ class ProcessController extends AbstractController
             $process->setDescription($description);
         }
 
-        if ($tests) {
-            $process->setTests($tests);
+        if ($steps) {
+            $process->setSteps($steps);
         }
 
         $entityManager->persist($process);

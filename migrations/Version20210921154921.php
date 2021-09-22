@@ -29,7 +29,7 @@ final class Version20210921154921 extends AbstractMigration
         $this->addSql('CREATE TABLE model_ingredient (id INT NOT NULL, ingredient_id INT DEFAULT NULL, model_id INT DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_29073E7933FE08C ON model_ingredient (ingredient_id)');
         $this->addSql('CREATE INDEX IDX_29073E77975B7E7 ON model_ingredient (model_id)');
-        $this->addSql('CREATE TABLE process (id INT NOT NULL, name VARCHAR(255) NOT NULL, description TEXT NOT NULL, tests JSON NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE process (id INT NOT NULL, name VARCHAR(255) NOT NULL, description TEXT NOT NULL, steps JSON NOT NULL, PRIMARY KEY(id))');
         $this->addSql('ALTER TABLE model_ingredient ADD CONSTRAINT FK_29073E7933FE08C FOREIGN KEY (ingredient_id) REFERENCES ingredient (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE model_ingredient ADD CONSTRAINT FK_29073E77975B7E7 FOREIGN KEY (model_id) REFERENCES model (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }

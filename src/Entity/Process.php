@@ -32,7 +32,7 @@ class Process
     /**
      * @ORM\Column(type="json")
      */
-    private $tests = [];
+    private $steps = [];
 
     /**
      * @ORM\OneToMany(targetEntity=Model::class, mappedBy="process")
@@ -73,14 +73,14 @@ class Process
         return $this;
     }
 
-    public function getTests(): ?array
+    public function getSteps(): ?array
     {
-        return $this->tests;
+        return $this->steps;
     }
 
-    public function setTests(array $tests): self
+    public function setSteps(array $steps): self
     {
-        $this->tests = $tests;
+        $this->steps = $steps;
 
         return $this;
     }

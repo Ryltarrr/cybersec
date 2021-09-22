@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Model;
+use App\Entity\Process;
 use App\Repository\ModelRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,12 +37,16 @@ class ModelController extends AbstractController
         $description = $body["description"];
         $price = $body["price"];
         $range = $body["range"];
+        $processId = $body["processId"];
+
+        $process = $entityManager->getRepository(Process::class)->find($processId);
 
         $model = new Model();
         $model->setName($name);
         $model->setDescription($description);
         $model->setPrice($price);
         $model->setRange($range);
+        $model->setProcess($process);
 
         $errors = $validator->validate($model);
         if (count($errors) > 0) {
