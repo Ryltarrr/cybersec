@@ -3,13 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Process;
-use App\Repository\IngredientRepository;
 use App\Repository\ProcessRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -96,7 +94,7 @@ class ProcessController extends AbstractController
     /**
      * @Route("/process/{id}", name="delete_process", methods={"DELETE"})
      */
-    public function deleteIngredient(
+    public function deleteProcess(
         int $id,
         ProcessRepository $processRepo,
         EntityManagerInterface $entityManager
