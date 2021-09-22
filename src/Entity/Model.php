@@ -44,6 +44,12 @@ class Model
      */
     private $modelIngredients;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Process::class, inversedBy="models")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $process;
+
     public function __construct()
     {
         $this->modelIngredients = new ArrayCollection();
@@ -129,6 +135,18 @@ class Model
                 $modelIngredient->setModel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProcess(): ?Process
+    {
+        return $this->process;
+    }
+
+    public function setProcess(?Process $process): self
+    {
+        $this->process = $process;
 
         return $this;
     }
