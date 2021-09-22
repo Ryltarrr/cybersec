@@ -18,8 +18,10 @@ class IngredientController extends AbstractController
     private $entityManager;
     private $ingredientRepository;
 
-    public function __construct(EntityManagerInterface $entityManager, IngredientRepository $ingredientRepository)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        IngredientRepository $ingredientRepository
+    ) {
         $this->entityManager = $entityManager;
         $this->ingredientRepository = $ingredientRepository;
     }
@@ -36,15 +38,17 @@ class IngredientController extends AbstractController
     /**
      * @Route("/ingredient", name="create_ingredient", methods={"POST"})
      */
-    public function createIngredient(Request $request, ValidatorInterface $validator): JsonResponse
-    {
+    public function createIngredient(
+        Request $request,
+        ValidatorInterface $validator
+    ): JsonResponse {
         $body = $request->toArray();
 
         $name = $body["name"];
         $description = $body["description"];
 
         if (empty($name) || empty($description)) {
-            throw new NotFoundHttpException('Expecting mandatory parameters!');
+            throw new NotFoundHttpException("Expecting mandatory parameters!");
         }
 
         $ingredient = new Ingredient();
@@ -53,7 +57,7 @@ class IngredientController extends AbstractController
 
         $errors = $validator->validate($ingredient);
         if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+            return $this->json($errors, 400);
         }
 
         $this->entityManager->persist($ingredient);
@@ -65,7 +69,7 @@ class IngredientController extends AbstractController
     /**
      * @Route("/ingredient", name="update_ingredient", methods={"PUT"})
      */
-    public function updateIngredient(Request $request, ValidatorInterface $validator): JsonResponse
+    public function updateIngredient(Request $request): JsonResponse
     {
         $body = $request->toArray();
         $id = $body["id"];
@@ -92,7 +96,6 @@ class IngredientController extends AbstractController
 
         return $this->json($ingredient->getId());
     }
-
 
     /**
      * @Route("/ingredient/{id}", name="delete_ingredient", methods={"DELETE"})

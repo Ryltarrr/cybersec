@@ -86,8 +86,9 @@ class Ingredient
         return $this;
     }
 
-    public function removeModelIngredient(ModelIngredient $modelIngredient): self
-    {
+    public function removeModelIngredient(
+        ModelIngredient $modelIngredient
+    ): self {
         if ($this->modelIngredients->removeElement($modelIngredient)) {
             // set the owning side to null (unless already changed)
             if ($modelIngredient->getIngredient() === $this) {

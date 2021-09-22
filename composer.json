@@ -58,6 +58,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "fix-cs": [
+            "prettier src/**/* --write"
         ]
     },
     "conflict": {
