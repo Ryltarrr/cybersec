@@ -94,7 +94,7 @@ class ProcessController extends AbstractController
     }
 
     /**
-     * @Route("/process/{id}", name="process_process", methods={"DELETE"})
+     * @Route("/process/{id}", name="delete_process", methods={"DELETE"})
      */
     public function deleteIngredient(
         int $id,
