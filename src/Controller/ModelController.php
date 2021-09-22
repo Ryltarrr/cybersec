@@ -39,7 +39,9 @@ class ModelController extends AbstractController
         $range = $body["range"];
         $processId = $body["processId"];
 
-        $process = $entityManager->getRepository(Process::class)->find($processId);
+        $process = $entityManager
+            ->getRepository(Process::class)
+            ->find($processId);
 
         $model = new Model();
         $model->setName($name);
@@ -80,6 +82,11 @@ class ModelController extends AbstractController
         $description = $body["description"];
         $price = $body["price"];
         $range = $body["range"];
+        $processId = $body["processId"];
+
+        $process = $entityManager
+            ->getRepository(Process::class)
+            ->find($processId);
 
         if ($name) {
             $model->setName($name);
@@ -95,6 +102,10 @@ class ModelController extends AbstractController
 
         if ($range) {
             $model->setRange($range);
+        }
+
+        if ($process) {
+            $model->setProcess($process);
         }
 
         $entityManager->persist($model);
