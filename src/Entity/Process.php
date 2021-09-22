@@ -2,9 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\ProcessRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,16 +30,6 @@ class Process
      * @ORM\Column(type="json")
      */
     private $steps = [];
-
-    /**
-     * @ORM\OneToMany(targetEntity=Model::class, mappedBy="process")
-     */
-    private $models;
-
-    public function __construct()
-    {
-        $this->models = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -81,36 +68,6 @@ class Process
     public function setSteps(array $steps): self
     {
         $this->steps = $steps;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Model[]
-     */
-    public function getModels(): Collection
-    {
-        return $this->models;
-    }
-
-    public function addModel(Model $model): self
-    {
-        if (!$this->models->contains($model)) {
-            $this->models[] = $model;
-            $model->setProcess($this);
-        }
-
-        return $this;
-    }
-
-    public function removeModel(Model $model): self
-    {
-        if ($this->models->removeElement($model)) {
-            // set the owning side to null (unless already changed)
-            if ($model->getProcess() === $this) {
-                $model->setProcess(null);
-            }
-        }
 
         return $this;
     }
