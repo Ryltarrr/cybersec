@@ -1,0 +1,8 @@
+security:
+  firewalls:
+    main:
+      provider: ldap_users
+
+  providers:
+    ldap_users:
+      id: App\Security\CustomLdapUserProvider
