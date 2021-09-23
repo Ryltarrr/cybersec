@@ -20,7 +20,7 @@ class ModelController extends AbstractController
     public function index(ModelRepository $modelRepo): JsonResponse
     {
         $models = $modelRepo->findAll();
-        return $this->json($models);
+        return $this->json($models, 200, [], ['groups' => 'show_model']);
     }
 
     /**

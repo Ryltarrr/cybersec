@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProcessRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProcessRepository::class)
@@ -14,21 +15,25 @@ class Process
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"show_model"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"show_model"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"show_model"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"show_model"})
      */
     private $steps = [];
 

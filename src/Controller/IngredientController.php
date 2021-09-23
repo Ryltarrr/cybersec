@@ -31,7 +31,7 @@ class IngredientController extends AbstractController
     public function index(): JsonResponse
     {
         $ingredients = $this->ingredientRepository->findAll();
-        return $this->json($ingredients);
+        return $this->json($ingredients, 200, [], ['groups' => 'show_ingredient']);
     }
 
     /**

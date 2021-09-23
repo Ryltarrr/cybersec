@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ModelIngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ModelIngredientRepository::class)
@@ -19,16 +20,21 @@ class ModelIngredient
 
     /**
      * @ORM\ManyToOne(targetEntity=Ingredient::class, inversedBy="modelIngredients")
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"show_model"})
      */
     private $ingredient;
 
     /**
      * @ORM\ManyToOne(targetEntity=Model::class, inversedBy="modelIngredients")
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"show_ingredient"})
      */
     private $model;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"show_model"})
      */
     private $grammage;
 
