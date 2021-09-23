@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Ingredient;
 use App\Entity\Model;
+use App\Entity\ModelIngredient;
 use App\Entity\Process;
 use App\Repository\ModelRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,6 +40,8 @@ class ModelController extends AbstractController
         $price = $body["price"];
         $range = $body["range"];
         $processId = $body["processId"];
+        $ingredients = $body["ingredients"];
+
 
         $process = $entityManager
             ->getRepository(Process::class)
@@ -49,6 +53,18 @@ class ModelController extends AbstractController
         $model->setPrice($price);
         $model->setRange($range);
         $model->setProcess($process);
+
+        foreach ($ingredients as $value) {
+            $ingredient = $entityManager->getRepository(Ingredient::class)->find($value["id"]);
+            if ($ingredient) {
+                $modelIngredient = new ModelIngredient();
+                $modelIngredient->setIngredient($ingredient);
+                $modelIngredient->setGrammage($value["grammage"]);
+                $modelIngredient->setModel($model);
+
+                $entityManager->persist($modelIngredient);
+            }
+        }
 
         $errors = $validator->validate($model);
         if (count($errors) > 0) {
