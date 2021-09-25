@@ -49,7 +49,7 @@ class ProcessController extends AbstractController
         $entityManager->persist($process);
         $entityManager->flush();
 
-        return $this->json($process->getId());
+        return $this->json($process, 200, [], ['groups' => 'show_ingredient']);
     }
 
     /**
@@ -88,7 +88,7 @@ class ProcessController extends AbstractController
         $entityManager->persist($process);
         $entityManager->flush();
 
-        return $this->json($process->getId());
+        return $this->json($process, 200, [], ['groups' => 'show_ingredient']);
     }
 
     /**

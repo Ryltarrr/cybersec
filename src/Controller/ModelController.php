@@ -74,7 +74,7 @@ class ModelController extends AbstractController
         $entityManager->persist($model);
         $entityManager->flush();
 
-        return $this->json($model->getId());
+        return $this->json($model, 200, [], ['groups' => 'show_ingredient']);
     }
 
     /**
@@ -127,7 +127,7 @@ class ModelController extends AbstractController
         $entityManager->persist($model);
         $entityManager->flush();
 
-        return $this->json($model->getId());
+        return $this->json($model, 200, [], ['groups' => 'show_ingredient']);
     }
 
     /**

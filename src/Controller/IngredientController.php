@@ -62,7 +62,7 @@ class IngredientController extends AbstractController
         $this->entityManager->persist($ingredient);
         $this->entityManager->flush();
 
-        return $this->json($ingredient->getId());
+        return $this->json($ingredient, 200, [], ['groups' => 'show_ingredient']);
     }
 
     /**
@@ -93,7 +93,7 @@ class IngredientController extends AbstractController
         $this->entityManager->persist($ingredient);
         $this->entityManager->flush();
 
-        return $this->json($ingredient->getId());
+        return $this->json($ingredient, 200, [], ['groups' => 'show_ingredient']);
     }
 
     /**
