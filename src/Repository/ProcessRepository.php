@@ -19,6 +19,11 @@ class ProcessRepository extends ServiceEntityRepository
         parent::__construct($registry, Process::class);
     }
 
+    public function findall()
+    {
+        return $this->findby([], ['id' => 'asc']);
+    }
+
     // /**
     //  * @return Process[] Returns an array of Process objects
     //  */

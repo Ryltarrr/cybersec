@@ -19,6 +19,11 @@ class ModelRepository extends ServiceEntityRepository
         parent::__construct($registry, Model::class);
     }
 
+    public function findall()
+    {
+        return $this->findby([], ['id' => 'asc']);
+    }
+
     // /**
     //  * @return Model[] Returns an array of Model objects
     //  */
