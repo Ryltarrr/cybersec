@@ -46,14 +46,14 @@ class Model
     private $range;
 
     /**
-     * @ORM\OneToMany(targetEntity=ModelIngredient::class, mappedBy="model")
+     * @ORM\OneToMany(targetEntity=ModelIngredient::class, mappedBy="model", cascade={"remove"})
      * @Groups({"show_model"})
      */
     private $modelIngredients;
 
     /**
      * @ORM\ManyToOne(targetEntity=Process::class, inversedBy="models")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Groups({"show_model"})
      */
     private $process;
