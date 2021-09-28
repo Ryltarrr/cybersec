@@ -30,6 +30,6 @@ security:
       stateless: true
       jwt: ~
 
-    access_control:
-      - { path: ^/api/login, roles: PUBLIC_ACCESS }
-      - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+  access_control:
+    - { path: ^/api/login, roles: PUBLIC_ACCESS }
+    - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
