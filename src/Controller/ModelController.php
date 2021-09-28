@@ -22,7 +22,7 @@ class ModelController extends AbstractController
     public function index(ModelRepository $modelRepo): JsonResponse
     {
         $models = $modelRepo->findAll();
-        return $this->json($models, 200, [], ['groups' => 'show_model']);
+        return $this->json($models, 200, [], ["groups" => "show_model"]);
     }
 
     /**
@@ -42,7 +42,6 @@ class ModelController extends AbstractController
         $processId = $body["processId"];
         $ingredients = $body["ingredients"];
 
-
         $process = $entityManager
             ->getRepository(Process::class)
             ->find($processId);
@@ -55,7 +54,9 @@ class ModelController extends AbstractController
         $model->setProcess($process);
 
         foreach ($ingredients as $value) {
-            $ingredient = $entityManager->getRepository(Ingredient::class)->find($value["id"]);
+            $ingredient = $entityManager
+                ->getRepository(Ingredient::class)
+                ->find($value["id"]);
             if ($ingredient) {
                 $modelIngredient = new ModelIngredient();
                 $modelIngredient->setIngredient($ingredient);
@@ -74,7 +75,7 @@ class ModelController extends AbstractController
         $entityManager->persist($model);
         $entityManager->flush();
 
-        return $this->json($model, 200, [], ['groups' => 'show_ingredient']);
+        return $this->json($model, 200, [], ["groups" => "show_ingredient"]);
     }
 
     /**
@@ -127,7 +128,7 @@ class ModelController extends AbstractController
         $entityManager->persist($model);
         $entityManager->flush();
 
-        return $this->json($model, 200, [], ['groups' => 'show_ingredient']);
+        return $this->json($model, 200, [], ["groups" => "show_ingredient"]);
     }
 
     /**

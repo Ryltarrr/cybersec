@@ -21,7 +21,7 @@ class ModelRepository extends ServiceEntityRepository
 
     public function findall()
     {
-        return $this->findby([], ['id' => 'asc']);
+        return $this->findby([], ["id" => "asc"]);
     }
 
     // /**

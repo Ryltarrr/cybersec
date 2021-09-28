@@ -31,7 +31,12 @@ class IngredientController extends AbstractController
     public function index(): JsonResponse
     {
         $ingredients = $this->ingredientRepository->findAll();
-        return $this->json($ingredients, 200, [], ['groups' => 'show_ingredient']);
+        return $this->json(
+            $ingredients,
+            200,
+            [],
+            ["groups" => "show_ingredient"]
+        );
     }
 
     /**
@@ -62,7 +67,12 @@ class IngredientController extends AbstractController
         $this->entityManager->persist($ingredient);
         $this->entityManager->flush();
 
-        return $this->json($ingredient, 200, [], ['groups' => 'show_ingredient']);
+        return $this->json(
+            $ingredient,
+            200,
+            [],
+            ["groups" => "show_ingredient"]
+        );
     }
 
     /**
@@ -93,7 +103,12 @@ class IngredientController extends AbstractController
         $this->entityManager->persist($ingredient);
         $this->entityManager->flush();
 
-        return $this->json($ingredient, 200, [], ['groups' => 'show_ingredient']);
+        return $this->json(
+            $ingredient,
+            200,
+            [],
+            ["groups" => "show_ingredient"]
+        );
     }
 
     /**
