@@ -84,6 +84,7 @@ class ModelController extends AbstractController
     public function updateModel(
         Request $request,
         EntityManagerInterface $entityManager,
+        ValidatorInterface $validator,
         ModelRepository $modelRepo
     ): JsonResponse {
         $body = $request->toArray();
@@ -123,6 +124,11 @@ class ModelController extends AbstractController
 
         if ($process) {
             $model->setProcess($process);
+        }
+
+        $errors = $validator->validate($model);
+        if (count($errors) > 0) {
+            return $this->json($errors, 400);
         }
 
         $entityManager->persist($model);

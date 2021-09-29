@@ -78,8 +78,10 @@ class IngredientController extends AbstractController
     /**
      * @Route("/ingredient", name="update_ingredient", methods={"PUT"})
      */
-    public function updateIngredient(Request $request): JsonResponse
-    {
+    public function updateIngredient(
+        Request $request,
+        ValidatorInterface $validator
+    ): JsonResponse {
         $body = $request->toArray();
         $id = $body["id"];
 
@@ -98,6 +100,11 @@ class IngredientController extends AbstractController
 
         if ($description) {
             $ingredient->setDescription($description);
+        }
+
+        $errors = $validator->validate($ingredient);
+        if (count($errors) > 0) {
+            return $this->json($errors, 400);
         }
 
         $this->entityManager->persist($ingredient);

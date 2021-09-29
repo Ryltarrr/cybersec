@@ -58,6 +58,7 @@ class ProcessController extends AbstractController
     public function updateProcess(
         Request $request,
         EntityManagerInterface $entityManager,
+        ValidatorInterface $validator,
         ProcessRepository $processRepo
     ): JsonResponse {
         $body = $request->toArray();
@@ -83,6 +84,11 @@ class ProcessController extends AbstractController
 
         if ($steps) {
             $process->setSteps($steps);
+        }
+
+        $errors = $validator->validate($process);
+        if (count($errors) > 0) {
+            return $this->json($errors, 400);
         }
 
         $entityManager->persist($process);
