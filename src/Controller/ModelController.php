@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class ModelController extends AbstractController
 {
     /**
-     * @Route("/model", name="model", methods={"GET"})
+     * @Route("/api/model", name="model", methods={"GET"})
      */
     public function index(ModelRepository $modelRepo): JsonResponse
     {
@@ -26,7 +26,7 @@ class ModelController extends AbstractController
     }
 
     /**
-     * @Route("/model", name="create_model", methods={"POST"})
+     * @Route("/api/model", name="create_model", methods={"POST"})
      */
     public function createModel(
         Request $request,
@@ -79,7 +79,7 @@ class ModelController extends AbstractController
     }
 
     /**
-     * @Route("/model", name="update_model", methods={"PUT"})
+     * @Route("/api/model", name="update_model", methods={"PUT"})
      */
     public function updateModel(
         Request $request,
@@ -138,7 +138,7 @@ class ModelController extends AbstractController
     }
 
     /**
-     * @Route("/model/{id}", name="delete_model", methods={"DELETE"})
+     * @Route("/api/model/{id}", name="delete_model", methods={"DELETE"})
      */
     public function deleteModel(
         int $id,

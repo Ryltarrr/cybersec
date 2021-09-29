@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class ProcessController extends AbstractController
 {
     /**
-     * @Route("/process", name="process", methods={"GET"})
+     * @Route("/api/process", name="process", methods={"GET"})
      */
     public function index(ProcessRepository $processRepo): JsonResponse
     {
@@ -23,7 +23,7 @@ class ProcessController extends AbstractController
     }
 
     /**
-     * @Route("/process", name="create_process", methods={"POST"})
+     * @Route("/api/process", name="create_process", methods={"POST"})
      */
     public function createProcess(
         Request $request,
@@ -53,7 +53,7 @@ class ProcessController extends AbstractController
     }
 
     /**
-     * @Route("/process", name="update_process", methods={"PUT"})
+     * @Route("/api/process", name="update_process", methods={"PUT"})
      */
     public function updateProcess(
         Request $request,
@@ -98,7 +98,7 @@ class ProcessController extends AbstractController
     }
 
     /**
-     * @Route("/process/{id}", name="delete_process", methods={"DELETE"})
+     * @Route("/api/process/{id}", name="delete_process", methods={"DELETE"})
      */
     public function deleteProcess(
         int $id,

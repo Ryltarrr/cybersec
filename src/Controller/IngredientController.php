@@ -26,7 +26,7 @@ class IngredientController extends AbstractController
     }
 
     /**
-     * @Route("/ingredient", name="ingredient", methods={"GET"})
+     * @Route("/api/ingredient", name="ingredient", methods={"GET"})
      */
     public function index(): JsonResponse
     {
@@ -40,7 +40,7 @@ class IngredientController extends AbstractController
     }
 
     /**
-     * @Route("/ingredient", name="create_ingredient", methods={"POST"})
+     * @Route("/api/ingredient", name="create_ingredient", methods={"POST"})
      */
     public function createIngredient(
         Request $request,
@@ -76,7 +76,7 @@ class IngredientController extends AbstractController
     }
 
     /**
-     * @Route("/ingredient", name="update_ingredient", methods={"PUT"})
+     * @Route("/api/ingredient", name="update_ingredient", methods={"PUT"})
      */
     public function updateIngredient(
         Request $request,
@@ -119,7 +119,7 @@ class IngredientController extends AbstractController
     }
 
     /**
-     * @Route("/ingredient/{id}", name="delete_ingredient", methods={"DELETE"})
+     * @Route("/api/ingredient/{id}", name="delete_ingredient", methods={"DELETE"})
      */
     public function deleteIngredient(int $id)
     {
